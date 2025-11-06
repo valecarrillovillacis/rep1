@@ -104,13 +104,17 @@ class VideogameDatabase:
         Returns:
             True if update was successful, False otherwise
         """
+        # Whitelist of allowed field names to prevent SQL injection
         allowed_fields = ['title', 'genre', 'platform', 'release_year', 
                          'developer', 'publisher', 'rating']
         
+        # Only accept fields that are in the whitelist
         updates = {k: v for k, v in kwargs.items() if k in allowed_fields}
         if not updates:
             return False
         
+        # Build SET clause - safe because field names are from whitelist
+        # Values are parameterized with ? to prevent SQL injection
         set_clause = ", ".join([f"{k} = ?" for k in updates.keys()])
         values = list(updates.values()) + [game_id]
         
@@ -147,20 +151,26 @@ class VideogameDatabase:
         conditions = []
         values = []
         
+        # Build WHERE clause from criteria with field name validation
+        # Field names are validated against known column names to prevent SQL injection
         for key, value in criteria.items():
             if key in ['title', 'genre', 'platform', 'developer', 'publisher']:
+                # Safe: key is validated against whitelist, value is parameterized
                 conditions.append(f"{key} LIKE ?")
                 values.append(f"%{value}%")
             elif key == 'release_year':
+                # Safe: key is validated, value is parameterized
                 conditions.append(f"{key} = ?")
                 values.append(value)
             elif key == 'min_rating':
+                # Safe: hardcoded column name, value is parameterized
                 conditions.append("rating >= ?")
                 values.append(value)
         
         if not conditions:
             return self.get_all_games()
         
+        # Build query - safe because conditions use validated field names and parameterized values
         where_clause = " AND ".join(conditions)
         query = f"SELECT * FROM videogames WHERE {where_clause} ORDER BY title"
         

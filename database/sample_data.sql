@@ -5,7 +5,7 @@
 -- Insert Publishers
 INSERT INTO Publishers (name, country, founded_year, website, description) VALUES
 ('Electronic Arts', 'USA', 1982, 'https://www.ea.com', 'One of the largest video game publishers in the world'),
-('Ubisoft', 'France', 1986, 'https://www.ubisoft.com', 'French video game company known for franchises like Assassins Creed'),
+('Ubisoft', 'France', 1986, 'https://www.ubisoft.com', 'French video game company known for franchises like Assassin''s Creed'),
 ('Nintendo', 'Japan', 1889, 'https://www.nintendo.com', 'Japanese multinational video game company'),
 ('Sony Interactive Entertainment', 'Japan', 1993, 'https://www.playstation.com', 'Video game and entertainment company'),
 ('Microsoft Studios', 'USA', 2002, 'https://www.xbox.com', 'Video game publisher and development division of Microsoft'),

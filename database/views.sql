@@ -135,17 +135,21 @@ SELECT
     a.points,
     a.rarity,
     COUNT(ua.user_achievement_id) AS times_unlocked,
-    (SELECT COUNT(*) FROM User_Library WHERE game_id = g.game_id) AS total_players,
+    COALESCE(ul_count.total_players, 0) AS total_players,
     CASE 
-        WHEN (SELECT COUNT(*) FROM User_Library WHERE game_id = g.game_id) > 0 
-        THEN ROUND((COUNT(ua.user_achievement_id) * 100.0 / 
-                   (SELECT COUNT(*) FROM User_Library WHERE game_id = g.game_id)), 1)
+        WHEN COALESCE(ul_count.total_players, 0) > 0 
+        THEN ROUND((COUNT(ua.user_achievement_id) * 100.0 / ul_count.total_players), 1)
         ELSE 0
     END AS completion_percentage
 FROM Achievements a
 JOIN Games g ON a.game_id = g.game_id
 LEFT JOIN User_Achievements ua ON a.achievement_id = ua.achievement_id
-GROUP BY a.achievement_id, g.title, a.name, a.points, a.rarity, g.game_id
+LEFT JOIN (
+    SELECT game_id, COUNT(*) AS total_players
+    FROM User_Library
+    GROUP BY game_id
+) ul_count ON g.game_id = ul_count.game_id
+GROUP BY a.achievement_id, g.title, a.name, a.points, a.rarity, g.game_id, ul_count.total_players
 ORDER BY g.title, completion_percentage DESC;
 
 -- ============================================

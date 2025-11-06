@@ -1,0 +1,9 @@
+{
+  "name": "ecorutas-aventura-aurora",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EcoRutas: Aventura Aurora web adventure",
+  "scripts": {
+    "test": "node --check game.js"
+  }
+}

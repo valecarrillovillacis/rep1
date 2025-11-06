@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoRutas: Aventura Aurora</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="game-panel">
+        <header class="hud">
+          <h1>EcoRutas: Aventura Aurora</h1>
+          <div class="hud__stats">
+            <span id="hud-level">Nivel 1</span>
+            <span id="hud-score">Puntos: 0</span>
+            <span id="hud-time">Tiempo: 00:00</span>
+          </div>
+        </header>
+        <canvas id="game-canvas" width="720" height="480" aria-label="Zona de juego"></canvas>
+        <footer class="hud hud--footer">
+          <h2>Mecánicas</h2>
+          <ul>
+            <li>Explora con <strong>WASD</strong> o <strong>↑←↓→</strong>.</li>
+            <li>Recolecta <strong>fichas de energía</strong> (círculos turquesa) para cargar la eco-boya.</li>
+            <li>Evita la <strong>niebla tóxica</strong> (círculos púrpura) o perderás energía.</li>
+            <li>Activa el <strong>faro verde</strong> para abrir el portal al siguiente nivel.</li>
+          </ul>
+        </footer>
+      </section>
+      <aside class="story-panel">
+        <section class="card">
+          <h2>Historia</h2>
+          <p>
+            En un archipiélago boreal, la guardiana <strong>Aurora</strong> despierta al encontrar sus
+            santuarios ecológicos invadidos por una niebla corrupta. Con la ayuda de druidas
+            costeros, deberá reactivar los faros de energía verde para purificar cada isla y
+            recuperar el equilibrio bioluminiscente del océano.
+          </p>
+        </section>
+        <section class="card">
+          <h2>Niveles</h2>
+          <ol>
+            <li><strong>Isla de los Cantos</strong>: tutorial entre dunas cantoras y mareas brillantes.</li>
+            <li><strong>Bahía de Cristal</strong>: rutas estrechas con corrientes rápidas y guardianes.</li>
+            <li><strong>Fjord de Lumen</strong>: laberinto polar con portales rotativos y niebla densa.</li>
+          </ol>
+        </section>
+        <section class="card">
+          <h2>Tecnología</h2>
+          <p>
+            Construido con <strong>HTML5 Canvas</strong> para el renderizado, <strong>JavaScript</strong> modular para la lógica
+            de juego y <strong>CSS3</strong> con gradientes y filtros para los efectos lumínicos. El sistema de
+            estados administra niveles, colisiones y temporizadores en tiempo real.
+          </p>
+        </section>
+        <section class="card">
+          <h2>Cronograma</h2>
+          <ul>
+            <li><strong>Día 1:</strong> Concepto narrativo, prototipo de mecánicas y arte vectorial base.</li>
+            <li><strong>Día 2:</strong> Integración de niveles, efectos visuales y balance de dificultad.</li>
+            <li><strong>Día 3:</strong> Pulido de interfaz, música ambiental y pruebas con jugadores.</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

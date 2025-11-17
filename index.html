@@ -23,15 +23,27 @@
         <div class="utility-actions">
           <a href="#security">Seguridad</a>
           <a href="#checkout">Pagos</a>
-          <a href="#" class="text-link">Ayuda</a>
+          <a href="#support" class="text-link">Ayuda</a>
         </div>
       </div>
-      <nav class="nav nav-main">
-        <div class="logo">thrifty</div>
+      <nav class="nav nav-main" id="mainNav">
+        <div class="nav-left">
+          <div class="logo">thrifty</div>
+          <button class="nav-toggle" id="navToggle" aria-label="Alternar navegación" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
         <div class="nav-center">
           <div class="nav-search">
             <span aria-hidden="true">🔍</span>
-            <input type="search" placeholder="Busca marcas, estilos o #hashtags" />
+            <input
+              type="search"
+              id="globalSearch"
+              placeholder="Busca marcas, estilos o #hashtags"
+              list="searchSuggestions"
+            />
           </div>
           <div class="category-links">
             <a href="#feed">Mujer</a>
@@ -42,8 +54,8 @@
           </div>
         </div>
         <div class="nav-actions">
-          <button class="ghost ghost-small">Ingresar</button>
-          <button class="cta cta-small">Lista tu pieza</button>
+          <button class="ghost ghost-small" data-action="demo-login">Ingresar</button>
+          <button class="cta cta-small" data-scroll-target="#list">Lista tu pieza</button>
         </div>
       </nav>
       <div class="hero-content">
@@ -56,8 +68,8 @@
           </p>
           <div class="hero-pill">+12,800 piezas curadas hoy</div>
           <div class="hero-actions">
-            <button class="cta">Empieza a vender</button>
-            <button class="ghost">Explora el feed</button>
+            <button class="cta" data-scroll-target="#list">Empieza a vender</button>
+            <button class="ghost" data-scroll-target="#feed">Explora el feed</button>
           </div>
         </div>
         <div class="hero-visual">
@@ -82,12 +94,13 @@
         </div>
       </div>
       <div class="category-chips">
-        <button>Vestidos</button>
-        <button>Streetwear</button>
-        <button>Luxury Bags</button>
-        <button>Home Upgrade</button>
-        <button>Pro Gear</button>
-        <button>Zapatos</button>
+        <button data-filter="all" class="active">Todo</button>
+        <button data-filter="category" data-value="ropa">Vestidos</button>
+        <button data-filter="style" data-value="street">Streetwear</button>
+        <button data-filter="category" data-value="accesorios">Luxury Bags</button>
+        <button data-filter="category" data-value="hogar">Home Upgrade</button>
+        <button data-filter="style" data-value="utility">Pro Gear</button>
+        <button data-filter="category" data-value="zapatos">Zapatos</button>
       </div>
     </header>
 
@@ -238,6 +251,9 @@
             </select>
           </label>
         </div>
+        <div class="search-actions">
+          <button type="button" class="ghost" id="clearFilters">Reiniciar filtros</button>
+        </div>
       </section>
 
       <section id="feed" class="panel feed">
@@ -265,7 +281,7 @@
             <h3>Promo relámpago</h3>
             <p>Activa un descuento temporal para desatar compras impulsivas.</p>
             <button id="flashPromo" class="ghost">Activar 15% OFF por 2h</button>
-            <div class="promo-status" id="promoStatus">—</div>
+            <div class="promo-status" id="promoStatus" role="status" aria-live="polite">—</div>
           </div>
         </div>
       </section>
@@ -280,7 +296,9 @@
             <h3>Outfit builder</h3>
             <p>Combina piezas y comparte tu look.</p>
             <div id="outfitSelection" class="outfit-selection"></div>
-            <div class="outfit-preview" id="outfitPreview">Selecciona 3 piezas para armar tu outfit.</div>
+            <div class="outfit-preview" id="outfitPreview" role="status" aria-live="polite">
+              Selecciona 3 piezas para armar tu outfit.
+            </div>
           </div>
           <div>
             <h3>Actividad social</h3>
@@ -382,7 +400,9 @@
           </label>
           <button type="submit">Calcular envío</button>
         </form>
-        <div id="shippingResult" class="shipping-result">Genera tu etiqueta con un clic.</div>
+        <div id="shippingResult" class="shipping-result" role="status" aria-live="polite">
+          Genera tu etiqueta con un clic.
+        </div>
       </section>
 
       <section id="returns" class="panel returns">
@@ -476,6 +496,27 @@
         </div>
         <div id="bundleItems" class="bundle-grid"></div>
         <div class="bundle-summary" id="bundleSummary">Selecciona piezas del mismo vendedor para aplicar descuentos.</div>
+      </section>
+
+      <section id="support" class="panel support">
+        <div class="panel-header">
+          <h2>Soporte y ayuda</h2>
+          <p>Estamos listos para ayudarte en cualquier punto del recorrido.</p>
+        </div>
+        <div class="support-content">
+          <div>
+            <h3>Canales disponibles</h3>
+            <ul>
+              <li>Chat humano 24/7 para sellers verificados.</li>
+              <li>Centro de ayuda con tutoriales y políticas claras.</li>
+              <li>Seguimiento automatizado de tickets críticos.</li>
+            </ul>
+          </div>
+          <div class="support-actions">
+            <button type="button" class="cta cta-small" id="demoSupportChat">Simular chat en vivo</button>
+            <button type="button" class="ghost" id="demoFaq">Visitar FAQs</button>
+          </div>
+        </div>
       </section>
     </main>
 

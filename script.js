@@ -213,6 +213,15 @@ const shippingForm = document.getElementById('shippingForm');
 const shippingResult = document.getElementById('shippingResult');
 const bundleItems = document.getElementById('bundleItems');
 const bundleSummary = document.getElementById('bundleSummary');
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('mainNav');
+const globalSearchInput = document.getElementById('globalSearch');
+const clearFiltersBtn = document.getElementById('clearFilters');
+const chipButtons = document.querySelectorAll('.category-chips button');
+const scrollTriggers = document.querySelectorAll('[data-scroll-target]');
+const loginButton = document.querySelector('[data-action="demo-login"]');
+const supportChatButton = document.getElementById('demoSupportChat');
+const supportFaqButton = document.getElementById('demoFaq');
 
 let conversation = [
   { sender: 'seller', text: 'Hola 👋, gracias por tu interés en las sneakers Arcadia.' },
@@ -222,6 +231,52 @@ let conversation = [
 
 let flashPromoActive = false;
 let selectedBundleIds = new Set();
+
+function scrollToSection(target) {
+  if (!target) return;
+  const element = document.querySelector(target);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function closeMobileNav() {
+  if (mainNav && mainNav.classList.contains('open')) {
+    mainNav.classList.remove('open');
+    if (navToggle) {
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+}
+
+function highlightChip(filterType = 'all', value = '') {
+  if (!chipButtons.length) return;
+  let matched = false;
+  chipButtons.forEach((button) => {
+    const isMatch =
+      (filterType === 'all' && button.dataset.filter === 'all') ||
+      (button.dataset.filter === filterType && button.dataset.value === value);
+    button.classList.toggle('active', Boolean(isMatch));
+    if (isMatch) matched = true;
+  });
+  if (!matched) {
+    chipButtons.forEach((button) => button.classList.toggle('active', button.dataset.filter === 'all'));
+  }
+}
+
+function clearAllFilters({ preserveChipSelection = false } = {}) {
+  searchInput.value = '';
+  if (globalSearchInput) globalSearchInput.value = '';
+  sizeFilter.value = '';
+  conditionFilter.value = '';
+  styleFilter.value = '';
+  categoryFilter.value = '';
+  priceRange.value = priceRange.max || priceRange.value || 500;
+  updatePriceRangeLabel();
+  if (!preserveChipSelection) {
+    highlightChip('all');
+  }
+}
 
 function renderConversation() {
   chatMessages.innerHTML = '';
@@ -378,6 +433,7 @@ listingForm.addEventListener('submit', (event) => {
   suggestedPrice.textContent = '—';
   autoTags.innerHTML = '';
   renderFeed(inventory);
+  filterInventory();
   updateSuggestions();
   renderOutfitSelection();
   renderBundleGrid();
@@ -544,6 +600,108 @@ shippingForm.addEventListener('submit', (event) => {
   shippingResult.textContent = `Costo estimado $${cost.toFixed(2)} · Etiqueta y tracking listos para descargar.`;
   addNotification('Etiqueta generada: recuerda dejar el paquete antes de 6pm.');
 });
+
+scrollTriggers.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const target = button.dataset.scrollTarget;
+    if (target) {
+      event.preventDefault();
+      scrollToSection(target);
+      closeMobileNav();
+    }
+  });
+});
+
+chipButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const filterType = button.dataset.filter;
+    if (filterType === 'all') {
+      clearAllFilters({ preserveChipSelection: true });
+      highlightChip('all');
+    } else {
+      clearAllFilters({ preserveChipSelection: true });
+      if (filterType === 'category') {
+        categoryFilter.value = button.dataset.value || '';
+      }
+      if (filterType === 'style') {
+        styleFilter.value = button.dataset.value || '';
+      }
+      highlightChip(filterType, button.dataset.value || '');
+    }
+    filterInventory();
+    scrollToSection('#feed');
+  });
+});
+
+if (clearFiltersBtn) {
+  clearFiltersBtn.addEventListener('click', () => {
+    clearAllFilters();
+    filterInventory();
+    addNotification('Reiniciaste los filtros para seguir explorando.');
+    scrollToSection('#feed');
+  });
+}
+
+if (navToggle) {
+  navToggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const isOpen = mainNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+}
+
+document.addEventListener('click', (event) => {
+  if (!mainNav) return;
+  if (!mainNav.contains(event.target)) {
+    closeMobileNav();
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 900) {
+    if (mainNav) {
+      mainNav.classList.remove('open');
+    }
+    if (navToggle) {
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
+
+if (globalSearchInput) {
+  globalSearchInput.addEventListener('input', () => {
+    searchInput.value = globalSearchInput.value;
+    highlightChip('all');
+    filterInventory();
+  });
+  globalSearchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      scrollToSection('#search');
+    }
+  });
+}
+
+if (loginButton) {
+  loginButton.addEventListener('click', () => {
+    addNotification('Modo demo: ingreso simulado, revisa tu perfil y stats.');
+    scrollToSection('#profile');
+    closeMobileNav();
+  });
+}
+
+if (supportChatButton) {
+  supportChatButton.addEventListener('click', () => {
+    addNotification('Soporte: abriste el chat demo, un agente responderá en segundos.');
+  });
+}
+
+if (supportFaqButton) {
+  supportFaqButton.addEventListener('click', () => {
+    addNotification('Soporte: abriste las FAQs más consultadas.');
+    scrollToSection('#support');
+  });
+}
 
 function initPriceRange() {
   updatePriceRangeLabel();

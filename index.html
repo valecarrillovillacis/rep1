@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thrifty | Second-Hand Style Reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="utility-bar">
+        <div class="utility-links">
+          <span>Envíos protegidos</span>
+          <span>Devoluciones claras</span>
+          <span>Community Drops diarios</span>
+        </div>
+        <div class="utility-actions">
+          <a href="#security">Seguridad</a>
+          <a href="#checkout">Pagos</a>
+          <a href="#support" class="text-link">Ayuda</a>
+        </div>
+      </div>
+      <nav class="nav nav-main" id="mainNav">
+        <div class="nav-left">
+          <div class="logo">thrifty</div>
+          <button class="nav-toggle" id="navToggle" aria-label="Alternar navegación" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div class="nav-center">
+          <div class="nav-search">
+            <span aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="globalSearch"
+              placeholder="Busca marcas, estilos o #hashtags"
+              list="searchSuggestions"
+            />
+          </div>
+          <div class="category-links">
+            <a href="#feed">Mujer</a>
+            <a href="#feed">Hombre</a>
+            <a href="#feed">Kids</a>
+            <a href="#feed">Hogar</a>
+            <a href="#security">Luxe</a>
+          </div>
+        </div>
+        <div class="nav-actions">
+          <button class="ghost ghost-small" data-action="demo-login">Ingresar</button>
+          <button class="cta cta-small" data-scroll-target="#list">Lista tu pieza</button>
+        </div>
+      </nav>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="tag">Moda circular con vibe premium</p>
+          <h1>Thrifty: el marketplace social inspirado en Poshmark</h1>
+          <p class="lead">
+            Feed vivo, chat con ofertas, bundles automáticos y herramientas de vendedores
+            profesionales, envueltos en una experiencia cálida y confiable.
+          </p>
+          <div class="hero-pill">+12,800 piezas curadas hoy</div>
+          <div class="hero-actions">
+            <button class="cta" data-scroll-target="#list">Empieza a vender</button>
+            <button class="ghost" data-scroll-target="#feed">Explora el feed</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-showcase">
+            <img
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
+              alt="Productos destacados"
+            />
+            <div class="hero-label">
+              <p>Outfit listo para enviar</p>
+              <span>Entrega estimada 48h</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <p>Highlights en tiempo real</p>
+            <ul>
+              <li>32 artículos en carritos esperando tu oferta ⚡️</li>
+              <li>Nuevo badge conseguido: Super Seller LVL 3</li>
+              <li>Pago protegido: 1.2M USD liberados esta semana</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="category-chips">
+        <button data-filter="all" class="active">Todo</button>
+        <button data-filter="category" data-value="ropa">Vestidos</button>
+        <button data-filter="style" data-value="street">Streetwear</button>
+        <button data-filter="category" data-value="accesorios">Luxury Bags</button>
+        <button data-filter="category" data-value="hogar">Home Upgrade</button>
+        <button data-filter="style" data-value="utility">Pro Gear</button>
+        <button data-filter="category" data-value="zapatos">Zapatos</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="profile" class="panel profile">
+        <div class="panel-header">
+          <h2>Perfil vendedor/comprador</h2>
+          <p>Transparencia total para que cada venta inspire confianza.</p>
+        </div>
+        <div class="profile-card">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=60" alt="Seller" />
+          <div>
+            <h3>Laura Mercado</h3>
+            <p>Bio: Arquitecta + reseller de lujo sustentable. Amo curar hallazgos únicos.</p>
+            <div class="profile-stats">
+              <div><span>Ventas</span><strong>418</strong></div>
+              <div><span>Rating</span><strong>4.9 ★</strong></div>
+              <div><span>Tiempo respuesta</span><strong>15 min</strong></div>
+              <div><span>Seguidores</span><strong>12.4k</strong></div>
+              <div><span>Duración de envío</span><strong>5 días</strong></div>
+            </div>
+            <div class="verifications">
+              <span>✅ Identidad verificada</span>
+              <span>🛡️ Seller Protection</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="list" class="panel listing">
+        <div class="panel-header">
+          <h2>Publicación express</h2>
+          <p>Sube fotos, video corto y deja que la IA sugiera precios y etiquetas.</p>
+        </div>
+        <form id="listingForm" class="listing-form">
+          <label>
+            Nombre del producto
+            <input type="text" name="title" required placeholder="Blazer oversized vintage" />
+          </label>
+          <label>
+            Marca
+            <input type="text" name="brand" required placeholder="Zara" />
+          </label>
+          <label>
+            Categoría
+            <select name="category" required>
+              <option value="ropa">Ropa</option>
+              <option value="zapatos">Zapatos</option>
+              <option value="accesorios">Accesorios</option>
+              <option value="hogar">Hogar/Utilidades</option>
+            </select>
+          </label>
+          <label>
+            Color
+            <input type="text" name="color" placeholder="Camel" />
+          </label>
+          <label>
+            Estilo
+            <input type="text" name="style" placeholder="Minimal" />
+          </label>
+          <label>
+            Condición
+            <select name="condition" required>
+              <option value="nuevo">Nuevo</option>
+              <option value="como nuevo">Como nuevo</option>
+              <option value="bueno">Bueno</option>
+            </select>
+          </label>
+          <label>
+            Precio deseado (USD)
+            <input type="number" name="price" required min="1" step="0.01" />
+          </label>
+          <label>
+            Fotos
+            <input type="file" multiple accept="image/*" />
+          </label>
+          <label>
+            Video corto
+            <input type="file" accept="video/*" />
+          </label>
+          <div class="suggestions">
+            <div>
+              <p>Precio sugerido</p>
+              <strong id="suggestedPrice">—</strong>
+            </div>
+            <div>
+              <p>Etiquetas inteligentes</p>
+              <div id="autoTags" class="tags"></div>
+            </div>
+          </div>
+          <button type="submit" class="cta">Publicar en el feed</button>
+        </form>
+      </section>
+
+      <section id="search" class="panel search">
+        <div class="panel-header">
+          <h2>Buscador inteligente</h2>
+          <p>Autocomplete, filtros y ranking según tu comportamiento.</p>
+        </div>
+        <div class="search-grid">
+          <label>
+            Busca por palabra clave
+            <input type="search" id="searchInput" placeholder="chamarra cuero, bolso, Nike..." list="searchSuggestions" />
+            <datalist id="searchSuggestions"></datalist>
+          </label>
+          <label>
+            Talla
+            <select id="sizeFilter">
+              <option value="">Todas</option>
+              <option value="xs">XS</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+            </select>
+          </label>
+          <label>
+            Condición
+            <select id="conditionFilter">
+              <option value="">Todas</option>
+              <option value="nuevo">Nuevo</option>
+              <option value="como nuevo">Como nuevo</option>
+              <option value="bueno">Bueno</option>
+            </select>
+          </label>
+          <label>
+            Estilo
+            <select id="styleFilter">
+              <option value="">Todos</option>
+              <option value="street">Street</option>
+              <option value="athleisure">Athleisure</option>
+              <option value="minimal">Minimal</option>
+              <option value="retro">Retro</option>
+            </select>
+          </label>
+          <label>
+            Rango precio
+            <input type="range" id="priceRange" min="10" max="500" step="10" value="250" />
+            <span id="priceRangeValue">Hasta $250</span>
+          </label>
+          <label>
+            Categoría
+            <select id="categoryFilter">
+              <option value="">Todas</option>
+              <option value="ropa">Ropa</option>
+              <option value="zapatos">Zapatos</option>
+              <option value="accesorios">Accesorios</option>
+              <option value="hogar">Hogar/Utilidades</option>
+            </select>
+          </label>
+        </div>
+        <div class="search-actions">
+          <button type="button" class="ghost" id="clearFilters">Reiniciar filtros</button>
+        </div>
+      </section>
+
+      <section id="feed" class="panel feed">
+        <div class="panel-header">
+          <h2>Feed dinámico tipo TikTok-shopping</h2>
+          <p>Scroll infinito de hallazgos personalizados según tu actividad.</p>
+        </div>
+        <div id="feedContainer" class="feed-grid"></div>
+      </section>
+
+      <section id="chat" class="panel chat">
+        <div class="panel-header">
+          <h2>Ofertas y negociación dentro del chat</h2>
+          <p>Haz ofertas, contraofertas y promo relámpago sin salir del ítem.</p>
+        </div>
+        <div class="chat-grid">
+          <div class="chat-window">
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="offerForm" class="chat-input">
+              <input type="number" id="offerValue" placeholder="Haz una oferta ($)" min="1" />
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+          <div class="chat-side">
+            <h3>Promo relámpago</h3>
+            <p>Activa un descuento temporal para desatar compras impulsivas.</p>
+            <button id="flashPromo" class="ghost">Activar 15% OFF por 2h</button>
+            <div class="promo-status" id="promoStatus" role="status" aria-live="polite">—</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="community" class="panel community">
+        <div class="panel-header">
+          <h2>Comunidad + social selling</h2>
+          <p>Likes, colecciones, outfits y bundles para elevar el AOV.</p>
+        </div>
+        <div class="community-grid">
+          <div>
+            <h3>Outfit builder</h3>
+            <p>Combina piezas y comparte tu look.</p>
+            <div id="outfitSelection" class="outfit-selection"></div>
+            <div class="outfit-preview" id="outfitPreview" role="status" aria-live="polite">
+              Selecciona 3 piezas para armar tu outfit.
+            </div>
+          </div>
+          <div>
+            <h3>Actividad social</h3>
+            <ul id="socialActivity" class="social-activity"></ul>
+          </div>
+          <div>
+            <h3>Collections destacadas</h3>
+            <div class="collections">
+              <article>
+                <h4>Utility + Outdoor</h4>
+                <p>Parcas técnicas, mochilas urbanas y botas resistentes.</p>
+              </article>
+              <article>
+                <h4>Retro Futurism</h4>
+                <p>Denim 90's, sneakers chunky y accesorios metalizados.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gamification" class="panel gamification">
+        <div class="panel-header">
+          <h2>Gamificación estratégica</h2>
+          <p>Metas con mentalidad pro reseller.</p>
+        </div>
+        <div class="badges">
+          <div class="badge">🔥 Super Seller</div>
+          <div class="badge">🚀 Fast Shipper</div>
+          <div class="badge">💎 Verified Luxe</div>
+        </div>
+        <div class="progress">
+          <div class="progress-label">
+            Nivel 3 · 72% hacia el siguiente badge
+          </div>
+          <div class="progress-bar"><span style="width: 72%"></span></div>
+        </div>
+        <div class="challenges">
+          <article>
+            <h4>Reto: Vende 5 prendas en 48h</h4>
+            <p>Gana 20% de descuento en comisiones.</p>
+          </article>
+          <article>
+            <h4>Reto: 3 bundles enviados esta semana</h4>
+            <p>Desbloquea badge "Bundle Boss".</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="checkout" class="panel checkout">
+        <div class="panel-header">
+          <h2>Checkout seguro e integrado</h2>
+          <p>Pagos locales e internacionales con protección al comprador.</p>
+        </div>
+        <div class="checkout-grid">
+          <div>
+            <h3>Métodos disponibles</h3>
+            <ul>
+              <li>Tarjeta de crédito/débito</li>
+              <li>PayPal</li>
+              <li>Apple Pay / Google Pay</li>
+              <li>Saldo Thrifty</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Protección</h3>
+            <p>
+              Retenemos el pago hasta que el comprador confirma la recepción.
+              Políticas claras y devoluciones limitadas para evitar abuso.
+            </p>
+          </div>
+          <div>
+            <h3>Seguimiento</h3>
+            <p>Tracking en la app y alertas proactivas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="shipping" class="panel shipping">
+        <div class="panel-header">
+          <h2>Envíos fáciles</h2>
+          <p>Etiquetas automáticas, pick-up y drop-off.</p>
+        </div>
+        <form id="shippingForm" class="shipping-form">
+          <label>
+            Peso (kg)
+            <input type="number" step="0.1" min="0.1" id="weightInput" value="1" />
+          </label>
+          <label>
+            Distancia (km)
+            <input type="number" min="1" id="distanceInput" value="10" />
+          </label>
+          <label>
+            Tipo de servicio
+            <select id="serviceSelect">
+              <option value="standard">Standard</option>
+              <option value="express">Express</option>
+            </select>
+          </label>
+          <button type="submit">Calcular envío</button>
+        </form>
+        <div id="shippingResult" class="shipping-result" role="status" aria-live="polite">
+          Genera tu etiqueta con un clic.
+        </div>
+      </section>
+
+      <section id="returns" class="panel returns">
+        <div class="panel-header">
+          <h2>Devoluciones claras</h2>
+          <p>Ventana limitada, requisitos transparentes.</p>
+        </div>
+        <ul>
+          <li>Solicita dentro de 3 días tras recibir el producto.</li>
+          <li>Solo aplica si el producto no coincide con la descripción.</li>
+          <li>Reembolsos en saldo Thrifty o método original.</li>
+        </ul>
+      </section>
+
+      <section id="dashboard" class="panel dashboard">
+        <div class="panel-header">
+          <h2>Herramientas para vendedores serios</h2>
+          <p>Dashboard accionable con vistas, conversiones y sugerencias.</p>
+        </div>
+        <div class="dashboard-grid">
+          <div>
+            <h3>Resumen</h3>
+            <div class="kpis">
+              <div>
+                <span>Views 7d</span>
+                <strong id="kpiViews">—</strong>
+              </div>
+              <div>
+                <span>Tasa conversión</span>
+                <strong id="kpiConversion">—</strong>
+              </div>
+              <div>
+                <span>Ticket promedio</span>
+                <strong id="kpiAov">—</strong>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Top sellers</h3>
+            <table id="topItems">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Views</th>
+                  <th>Ventas</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Sugerencias</h3>
+            <ul id="sellTips" class="tips"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="notifications" class="panel notifications">
+        <div class="panel-header">
+          <h2>Notificaciones inteligentes</h2>
+          <p>Recordatorios suaves y accionables.</p>
+        </div>
+        <ul id="notificationList" class="notification-list"></ul>
+      </section>
+
+      <section id="security" class="panel security">
+        <div class="panel-header">
+          <h2>Seguridad y verificación</h2>
+          <p>Identidad opcional, antifraude y seguimiento.</p>
+        </div>
+        <div class="security-grid">
+          <article>
+            <h3>Verificación avanzada</h3>
+            <p>Selfie + documento para vendedores top.</p>
+          </article>
+          <article>
+            <h3>Protección antifraude</h3>
+            <p>Machine learning para detectar patrones sospechosos.</p>
+          </article>
+          <article>
+            <h3>Tracking in-app</h3>
+            <p>Seguimiento del paquete con alertas automáticas.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="bundles" class="panel bundles">
+        <div class="panel-header">
+          <h2>Bundles y descuentos automáticos</h2>
+          <p>Aumenta el AOV ofreciendo combos irresistibles.</p>
+        </div>
+        <div id="bundleItems" class="bundle-grid"></div>
+        <div class="bundle-summary" id="bundleSummary">Selecciona piezas del mismo vendedor para aplicar descuentos.</div>
+      </section>
+
+      <section id="support" class="panel support">
+        <div class="panel-header">
+          <h2>Soporte y ayuda</h2>
+          <p>Estamos listos para ayudarte en cualquier punto del recorrido.</p>
+        </div>
+        <div class="support-content">
+          <div>
+            <h3>Canales disponibles</h3>
+            <ul>
+              <li>Chat humano 24/7 para sellers verificados.</li>
+              <li>Centro de ayuda con tutoriales y políticas claras.</li>
+              <li>Seguimiento automatizado de tickets críticos.</li>
+            </ul>
+          </div>
+          <div class="support-actions">
+            <button type="button" class="cta cta-small" id="demoSupportChat">Simular chat en vivo</button>
+            <button type="button" class="ghost" id="demoFaq">Visitar FAQs</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2024 Thrifty. Moda circular con estética minimal y confiable.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
